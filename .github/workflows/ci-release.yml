@@ -21,6 +21,7 @@ on:
 permissions:
   contents: read
   checks: write
+  id-token: write
 
 jobs:
   lint-all:
@@ -57,6 +58,10 @@ jobs:
         uses: ./.github/actions/install-latest-npm
         with:
           node: ${{ steps.node.outputs.node-version }}
+      - name: Setup JFrog Fly
+        uses: jfrog/fly-action@v1
+        with:
+          url: https://asafecitest.jfrog.io
       - name: Install Dependencies
         run: npm i --ignore-scripts --no-audit --no-fund
       - name: Lint
@@ -147,6 +152,10 @@ jobs:
         uses: ./.github/actions/install-latest-npm
         with:
           node: ${{ steps.node.outputs.node-version }}
+      - name: Setup JFrog Fly
+        uses: jfrog/fly-action@v1
+        with:
+          url: https://asafecitest.jfrog.io
       - name: Install Dependencies
         run: npm i --ignore-scripts --no-audit --no-fund
       - name: Add Problem Matcher

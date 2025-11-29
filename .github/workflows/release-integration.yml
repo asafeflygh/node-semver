@@ -51,6 +51,10 @@ jobs:
         uses: ./.github/actions/install-latest-npm
         with:
           node: ${{ steps.node.outputs.node-version }}
+      - name: Setup JFrog Fly
+        uses: jfrog/fly-action@v1
+        with:
+          url: https://asafecitest.jfrog.io
       - name: Install Dependencies
         run: npm i --ignore-scripts --no-audit --no-fund
       - name: Set npm authToken
